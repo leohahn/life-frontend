@@ -1,3 +1,4 @@
+const path = require('path')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
@@ -22,7 +23,7 @@ module.exports = {
   },
   target: 'web',
   output: {
-    path: `${__dirname}/src`,
+    path: path.join(__dirname, 'build')
     publicPath: '/',
     filename: '[name].js'
   },
