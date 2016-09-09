@@ -1,6 +1,9 @@
 const initialState = {
   loggedIn: true,
-  data: null
+  data: {
+    username: null,
+    name: null
+  }
 }
 
 export default function user(state = initialState, action) {

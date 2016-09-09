@@ -1,9 +1,8 @@
-process.env.NODE_ENV = 'development'
-const __PORT__ = process.env.PORT || 3000
-
 const webpack = require('webpack')
 const WebpackDevServer = require('webpack-dev-server')
-const config = require('../config/webpack.dev.js')
+const config = require('../webpack.dev.js')
+
+const __PORT__ = process.env.PORT || 3000
 
 const server = new WebpackDevServer(webpack(config), {
   publicPath: config.output.publicPath,

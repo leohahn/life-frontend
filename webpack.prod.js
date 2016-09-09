@@ -1,11 +1,8 @@
-process.env.NODE_ENV = 'production'
-
 const path = require('path')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin')
-const PurifyCssWebpackPlugin = require('purifycss-webpack-plugin')
 
 if (process.env.NODE_ENV !== 'production') {
   throw new Error('You must run this script with NODE_ENV as production')
@@ -29,14 +26,14 @@ module.exports = {
   // This option creates source map for all the created chunks. It is the highest
   // quality source map available (builds take longer), that is why is
   // only used on production.
-  devtool: 'source-map',
+  devtool: 'eval-source-map',
   // This object defines the entry path for all of out entries.
   // Each entry is unrelated to eachother, and can be separatedly added as script
   // tags or link tags on a .html file.
   // The keys are the respective entry name, and can later be refered as '[name]'.
   entry: {
     app: path.join(APP_PATH, 'index.js'),
-    style: 'bootstrap/dist/css/bootstrap.css',
+    styles: 'bootstrap/dist/css/bootstrap.css',
     vendor: ['react', 'react-dom', 'redux', 'react-redux', 'react-bootstrap', 'phoenix']
   },
 
@@ -66,8 +63,9 @@ module.exports = {
     new ExtractTextWebpackPlugin('[name].[chunkhash].css'),
     // Plugin that replaces a specific variable with a string when building files.
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify('production'),
-      __PROD__: true
+      'process.env': {
+        NODE_ENV: JSON.stringify(process.env.NODE_ENV)
+      }
     }),
     // UglifyJS plugin that creates a minified version of all the built files.
     new webpack.optimize.UglifyJsPlugin({
@@ -81,8 +79,6 @@ module.exports = {
       names: ['vendor', 'manifest']
     }),
     // Removes possible require duplicates from entries.
-    new webpack.optimize.DedupePlugin(),
-    new webpack.optimize.OccurenceOrderPlugin(),
     // Plugin that creates a HTML file that is based on a template.
     // This plugin injects all the built files for us, so we don't have to do it.
     new HtmlWebpackPlugin({
@@ -99,7 +95,7 @@ module.exports = {
       test: /\.jsx?$/, include: APP_PATH,
       loader: 'babel',
       query: {
-        presets: ['es2015', 'react']
+        presets: ['es2015', 'react', 'stage-0']
       }
     }, {
       // triggered by: require('*.css')
