@@ -3,7 +3,8 @@ const initialState = {
   data: {
     username: null,
     name: null
-  }
+  },
+  error: false
 }
 
 export default function user(state = initialState, action) {

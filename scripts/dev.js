@@ -5,9 +5,9 @@ const config = require('../webpack.dev.js')
 const __PORT__ = process.env.PORT || 3000
 
 const server = new WebpackDevServer(webpack(config), {
+  historyApiFallback: true,
   publicPath: config.output.publicPath,
   hot: true,
-  historyApiFallback: true,
   stats: {
     colors: true
   }

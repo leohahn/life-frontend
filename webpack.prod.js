@@ -21,7 +21,8 @@ module.exports = {
   //   2- require('./myModule.js'),
   //   3- require('./myModule.jsx')
   resolve: {
-    extensions: ['', '.js', '.jsx']
+    extensions: ['', '.js', '.jsx'],
+    modulesDirectories: ['src', 'node_modules']
   },
   // This option creates source map for all the created chunks. It is the highest
   // quality source map available (builds take longer), that is why is
@@ -34,7 +35,15 @@ module.exports = {
   entry: {
     app: path.join(APP_PATH, 'index.js'),
     styles: 'bootstrap/dist/css/bootstrap.css',
-    vendor: ['react', 'react-dom', 'redux', 'react-redux', 'react-bootstrap', 'phoenix']
+    vendor: [
+      'react',
+      'react-router',
+      'react-dom',
+      'redux',
+      'react-redux',
+      'react-bootstrap',
+      'phoenix',
+    ]
   },
 
   target: 'web',

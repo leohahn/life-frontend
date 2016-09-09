@@ -11,7 +11,8 @@ const BUILD_PATH = path.join(__dirname, 'build')
 
 module.exports = {
   resolve: {
-    extensions: ['', '.js', '.jsx']
+    extensions: ['', '.js', '.jsx'],
+    modulesDirectories: ['src', 'node_modules']
   },
 
   debug: true,
