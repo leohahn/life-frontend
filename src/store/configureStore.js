@@ -1,17 +1,21 @@
-import {createStore} from 'redux'
-import rootReducer from '../reducers'
+import createSagaMiddleware from 'redux-saga'
+import {createStore, applyMiddleware, compose} from 'redux'
+import rootReducer from 'reducers/index'
+import rootSaga from 'sagas/index'
+
+
+const sagaMiddleware = createSagaMiddleware()
+const enhancers = compose(
+  applyMiddleware(sagaMiddleware),
+  window.devToolsExtension && window.devToolsExtension()
+)
 
 export default function configureStore (initialState) {
-  let store
-  if (initialState) {
-    store = createStore(rootReducer, initialState,
-      window.devToolsExtension && window.devToolsExtension()
-    )
-  } else {
-    store = createStore(rootReducer,
-      window.devToolsExtension && window.devToolsExtension()
-    )
-  }
+  const store = initialState
+    ? createStore(rootReducer, initialState, enhancers)
+    : createStore(rootReducer, enhancers)
+
+  sagaMiddleware.run(rootSaga)
 
   if (module.hot) {
     module.hot.accept('../reducers', () => {

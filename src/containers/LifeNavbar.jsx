@@ -1,18 +1,21 @@
 import React, {PropTypes} from 'react'
 import {connect} from 'react-redux'
+import {withRouter} from 'react-router'
 import LoggedInNavbar from 'components/LoggedInNavbar'
 import LoggedOutNavbar from 'components/LoggedOutNavbar'
 
 class LifeNavbar extends React.Component {
   static propTypes = {
-    username: PropTypes.string
+    username: PropTypes.string,
+    pathname: PropTypes.string
   }
 
   render () {
-    const {username} = this.props
+    const {username, pathname} = this.props
+
     return username
-      ? <LoggedInNavbar username={username}/>
-      : <LoggedOutNavbar/>
+      ? <LoggedInNavbar pathname={pathname} username={username}/>
+      : <LoggedOutNavbar pathname={pathname}/>
   }
 }
 
@@ -22,6 +25,6 @@ function mapStateToProps ({ user }) {
   }
 }
 
-export default connect(
+export default withRouter(connect(
   mapStateToProps
-)(LifeNavbar)
+)(LifeNavbar))

@@ -33,16 +33,20 @@ module.exports = {
   // tags or link tags on a .html file.
   // The keys are the respective entry name, and can later be refered as '[name]'.
   entry: {
-    app: path.join(APP_PATH, 'index.js'),
-    styles: 'bootstrap/dist/css/bootstrap.css',
+    app: ['babel-polyfill', path.join(APP_PATH, 'index.js')],
+    styles: [
+      'bootstrap/dist/css/bootstrap.css',
+      'react-redux-toastr/src/less/index.less'
+    ],
     vendor: [
       'react',
       'react-router',
       'react-dom',
       'redux',
+      'redux-saga',
       'react-redux',
       'react-bootstrap',
-      'phoenix',
+      'phoenix'
     ]
   },
 

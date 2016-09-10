@@ -1,6 +1,8 @@
 import {combineReducers} from 'redux'
-import user from './user'
+import {reducer as toastrReducer} from 'react-redux-toastr'
+import userReducer from './user'
 
 export default combineReducers({
-  user
+  user: userReducer,
+  toastr: toastrReducer
 })

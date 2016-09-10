@@ -10,6 +10,9 @@ const server = new WebpackDevServer(webpack(config), {
   hot: true,
   stats: {
     colors: true
+  },
+  "proxy": {
+    "/api": "http://localhost:4000/api"
   }
 })
 

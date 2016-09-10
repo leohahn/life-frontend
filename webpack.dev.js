@@ -26,6 +26,7 @@ module.exports = {
       'webpack-dev-server/client?http://localhost:3000',
       'webpack/hot/only-dev-server',
       'react-hot-loader/patch',
+      'babel-polyfill',
       './src/index'
     ]
   },
@@ -67,6 +68,10 @@ module.exports = {
       // triggered by: require('*.css')
       test: /\.css$/,
       loaders: ['style', 'css']
+    }, {
+      // triggered by: require('*.less')
+      test: /\.less$/,
+      loaders: ['style', 'css', 'less']
     }, {
       // triggered by: require('*.gif'), ..., all other extensions.
       test: /\.(gif|jpg|png|svg)$/,

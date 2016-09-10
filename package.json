@@ -21,6 +21,7 @@
     "extract-text-webpack-plugin": "^1.0.1",
     "file-loader": "^0.9.0",
     "html-webpack-plugin": "^2.22.0",
+    "less-loader": "^2.2.3",
     "purifycss-webpack-plugin": "^2.0.3",
     "react-hot-loader": "^3.0.0-beta.3",
     "style-loader": "^0.13.1",
@@ -31,13 +32,16 @@
   "author": "Leonardo Hahn",
   "license": "MIT",
   "dependencies": {
+    "babel-polyfill": "^6.13.0",
     "bootstrap": "^3.3.7",
     "phoenix": "^1.2.0",
     "react": "^15.3.1",
     "react-bootstrap": "^0.30.3",
     "react-dom": "^15.3.1",
     "react-redux": "^4.4.5",
+    "react-redux-toastr": "^3.7.0",
     "react-router": "^2.7.0",
-    "redux": "^3.6.0"
+    "redux": "^3.6.0",
+    "redux-saga": "^0.11.1"
   }
 }
