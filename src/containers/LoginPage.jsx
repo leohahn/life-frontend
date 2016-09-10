@@ -1,9 +1,14 @@
-import React from 'react'
+import React, {PropTypes} from 'react'
 import {connect} from 'react-redux'
 import {userLogin} from 'actions/user'
 import LoginForm from 'components/LoginForm'
 
 class LoginPage extends React.Component {
+  static propTypes = {
+    dispatch: PropTypes.func.isRequired,
+    fetching: PropTypes.bool.isRequired
+  }
+
   constructor (props) {
     super(props)
   }
@@ -13,8 +18,19 @@ class LoginPage extends React.Component {
   }
 
   render () {
-    return <LoginForm onLoginClick={this.handleLoginClick.bind(this)}/>
+    return (
+      <LoginForm
+        fetching={this.props.fetching}
+        onLoginClick={this.handleLoginClick.bind(this)}
+      />
+    )
   }
 }
 
-export default connect()(LoginPage)
+const mapStateToProps = (state) => ({
+  fetching: state.user.status === 'fetching'
+})
+
+export default connect(
+  mapStateToProps
+)(LoginPage)

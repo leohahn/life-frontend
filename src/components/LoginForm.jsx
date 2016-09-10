@@ -6,7 +6,8 @@ import Button from 'react-bootstrap/lib/Button'
 
 class LoginForm extends React.Component {
   static propTypes = {
-    onLoginClick: PropTypes.func.isRequired
+    onLoginClick: PropTypes.func.isRequired,
+    fetching: PropTypes.bool.isRequired
   }
 
   constructor (props) {
@@ -28,6 +29,7 @@ class LoginForm extends React.Component {
   }
 
   render () {
+    const {fetching} = this.props
     return (
       <form>
         <FormGroup controlId="username">
@@ -48,8 +50,12 @@ class LoginForm extends React.Component {
             onChange={this.handleChange.bind(this, 'password')}
           />
         </FormGroup>
-        <Button bsStyle="success" onClick={this.handleClick.bind(this)}>
-          Login
+        <Button
+          bsStyle="success"
+          disabled={fetching}
+          onClick={this.handleClick.bind(this)}
+        >
+          {fetching ? 'Loading...' : 'Login'}
         </Button>
       </form>
     )

@@ -17,20 +17,13 @@ export default function getRoutes (store) {
   const checkAuth = (nextState, replaceState) => {
     const state = store.getState()
 
-    const goingToHome =
-      nextState.location.pathname === '/'
-
-    const goingToLogin = nextState.location.pathname === '/login'
-
-    if (state.user.loggedIn) {
-      replaceState(nextState.location.pathname)
-    } else {
+    if (!state.user.loggedIn) {
       replaceState('/login')
     }
   }
 
   return (
-    <Route path="/" component={AppLayout}>
+    <Route component={AppLayout}>
       <Route onEnter={checkAuth}>
         <Route path="/" component={HomePage}/>
       </Route>

@@ -8,6 +8,7 @@ import {
 import {logout} from 'api/index'
 import {storage} from 'store/utils'
 import {toastr} from 'react-redux-toastr'
+import {browserHistory} from 'react-router'
 
 export const userLogin = (userData) => ({ type: USER_LOGIN, payload: userData })
 export const userLoginRequested = () => ({ type: USER_LOGIN_REQUESTED })
@@ -22,6 +23,7 @@ export const userLogout = (jwt) => {
     if (res.ok) {
       toastr.success('Logged out successfuly')
       storage.remove('token')
+      browserHistory.push('/login')
     } else {
       toastr.error('Error during logout')
     }
