@@ -1,5 +1,6 @@
 import {takeLatest} from 'redux-saga'
 import {put, call, apply} from 'redux-saga/effects'
+import {browserHistory} from 'react-router'
 import {toastr} from 'react-redux-toastr'
 import {USER_LOGIN} from 'constants/user'
 import {userLoginSucceeded, userLoginRequested, userLoginFailed} from 'actions/user'
@@ -17,6 +18,7 @@ function * userLogin (action) {
       yield put(userLoginSucceeded(data.payload.user))
       yield call(toastr.success, 'Login Succeeded')
       yield call(storage.set, 'token', data.payload)
+      yield call(browserHistory.push, '/')
     } else {
       yield put(userLoginFailed())
       yield call(toastr.error, data.payload)

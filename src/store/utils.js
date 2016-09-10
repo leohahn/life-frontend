@@ -4,5 +4,8 @@ export const storage = {
   },
   set (key, value) {
     sessionStorage.setItem(key, JSON.stringify(value))
+  },
+  remove (key) {
+    sessionStorage.removeItem(key)
   }
 }

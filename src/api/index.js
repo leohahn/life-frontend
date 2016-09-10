@@ -29,3 +29,12 @@ export function login (userData) {
       })
     })
 }
+
+export function logout (jwt) {
+  const options = {
+    method: 'DELETE',
+    headers: new Headers({ 'Authorization': `Bearer ${jwt}` }),
+    mode: 'cors'
+  }
+  return fetch(`${API_URL}/sessions/`, options)
+}
