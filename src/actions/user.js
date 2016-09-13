@@ -1,9 +1,6 @@
 import {
-  USER_LOGIN,
-  USER_LOGIN_REQUESTED,
-  USER_LOGIN_SUCCEEDED,
-  USER_LOGIN_FAILED,
-  USER_LOGOUT
+  USER_LOGIN, USER_LOGIN_REQUESTED, USER_LOGIN_SUCCEEDED, USER_LOGIN_FAILED,
+  USER_LOGOUT, USER_CREATE
 } from 'constants/user'
 import {logout} from 'api/index'
 import {storage} from 'store/utils'
@@ -17,6 +14,8 @@ export const userLoginSucceeded = (userData) => ({
   type: USER_LOGIN_SUCCEEDED,
   payload: userData
 })
+
+export const userCreate = (userData) => ({ type: USER_CREATE, payload: userData })
 
 export const userLogout = (jwt) => {
   logout(jwt).then(res => {
@@ -32,3 +31,4 @@ export const userLogout = (jwt) => {
     type: USER_LOGOUT
   }
 }
+

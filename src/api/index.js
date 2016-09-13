@@ -22,12 +22,6 @@ export function login (userData) {
         })
       }
     })
-    .catch(e => {
-      return Promise.resolve({
-        status: 'error',
-        payload: e
-      })
-    })
 }
 
 export function logout (jwt) {
@@ -37,4 +31,14 @@ export function logout (jwt) {
     mode: 'cors'
   }
   return fetch(`${API_URL}/sessions/`, options)
+}
+
+export function userCreate (userData) {
+  const options = {
+    method: 'POST',
+    body: JSON.stringify({user: userData}),
+    headers: new Headers({ 'content-type': 'application/json' }),
+    mode: 'cors'
+  }
+  return fetch(`${API_URL}/users/`, options)
 }

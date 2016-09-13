@@ -33,14 +33,17 @@ module.exports = {
   // tags or link tags on a .html file.
   // The keys are the respective entry name, and can later be refered as '[name]'.
   entry: {
-    app: ['babel-polyfill', path.join(APP_PATH, 'index.js')],
+    app: path.join(APP_PATH, 'index.js'),
     styles: [
       'bootstrap/dist/css/bootstrap.css',
       'react-redux-toastr/src/less/index.less'
     ],
     vendor: [
+      'babel-polyfill',
       'react',
+      'react-hot-loader',
       'react-router',
+      'react-router-bootstrap',
       'react-dom',
       'redux',
       'redux-saga',
@@ -95,6 +98,7 @@ module.exports = {
     // Plugin that creates a HTML file that is based on a template.
     // This plugin injects all the built files for us, so we don't have to do it.
     new HtmlWebpackPlugin({
+      title: 'Life',
       template: path.join(APP_PATH, 'index.ejs'),
       inject: true
     })
@@ -112,6 +116,10 @@ module.exports = {
       }
     }, {
       // triggered by: require('*.css')
+      test: /\.less$/,
+      loader: ExtractTextWebpackPlugin.extract('style', 'css!less')
+    }, {
+      // triggered by: require('*.css')
       test: /\.css$/,
       loader: ExtractTextWebpackPlugin.extract('style', 'css')
     }, {
@@ -125,7 +133,7 @@ module.exports = {
     }, {
       // triggered by: require('...')
       test: /\.(ttf|eot|woff(2)?)(\?[a-z0-9]+)?$/,
-      loader: 'url-loader?limit=100000'
+      loader: 'url-loader?limit=50000'
     }]
   }
 }

@@ -1,12 +1,10 @@
 import React from 'react'
 import {Link, browserHistory} from 'react-router'
+import {LinkContainer} from 'react-router-bootstrap'
 import Navbar from 'react-bootstrap/lib/Navbar'
 import Nav from 'react-bootstrap/lib/Nav'
 import NavItem from 'react-bootstrap/lib/NavItem'
 
-function redirectLogin () {
-  browserHistory.push('/login')
-}
 
 const LoggedOutNavbar = ({ pathname }) =>
   <Navbar inverse>
@@ -18,10 +16,16 @@ const LoggedOutNavbar = ({ pathname }) =>
     </Navbar.Header>
     <Navbar.Collapse>
       <Nav pullRight>
-        <NavItem active={pathname === '/login' ? true : false}
-                 onClick={redirectLogin}>
-          Login
-        </NavItem>
+        <LinkContainer to="/login">
+          <NavItem active={pathname === '/login' ? true : false}>
+            Login
+          </NavItem>
+        </LinkContainer>
+        <LinkContainer to="/register">
+          <NavItem active={pathname === '/register' ? true : false}>
+            Register
+          </NavItem>
+        </LinkContainer>
       </Nav>
     </Navbar.Collapse>
   </Navbar>

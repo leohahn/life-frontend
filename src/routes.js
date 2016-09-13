@@ -4,9 +4,10 @@ import AppLayout from 'components/AppLayout'
 import HomePage from 'containers/HomePage'
 import NotFoundPage from 'containers/NotFoundPage'
 import LoginPage from 'containers/LoginPage'
+import RegisterPage from 'containers/RegisterPage'
 
 export default function getRoutes (store) {
-  const redirectIfLogged = (nextState, replaceState) => {
+  const redirectIfLoggedIn = (nextState, replaceState) => {
     const state = store.getState()
 
     if (state.user.loggedIn) {
@@ -28,8 +29,9 @@ export default function getRoutes (store) {
         <Route path="/" component={HomePage}/>
       </Route>
 
-      <Route onEnter={redirectIfLogged}>
+      <Route onEnter={redirectIfLoggedIn}>
         <Route path="/login" component={LoginPage}/>
+        <Route path="/register" component={RegisterPage}/>
       </Route>
 
       <Route path="*" component={NotFoundPage}/>

@@ -1,4 +1,5 @@
 import React, {PropTypes} from 'react'
+import {LinkContainer} from 'react-router-bootstrap'
 import {Link} from 'react-router'
 import Navbar from 'react-bootstrap/lib/Navbar'
 import Nav from 'react-bootstrap/lib/Nav'
@@ -25,9 +26,11 @@ class LoggedInNavbar extends React.Component {
         </Navbar.Header>
         <Navbar.Collapse>
           <Nav>
-            <NavItem active={pathname === '/' ? true : false}>
-              Home
-            </NavItem>
+            <LinkContainer to="/">
+              <NavItem active={pathname === '/' ? true : false}>
+                Home
+              </NavItem>
+            </LinkContainer>
           </Nav>
           <Nav pullRight>
             <NavDropdown title={username} id="user-dropdown">
