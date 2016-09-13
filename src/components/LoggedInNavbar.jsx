@@ -34,6 +34,7 @@ class LoggedInNavbar extends React.Component {
           </Nav>
           <Nav pullRight>
             <NavDropdown title={username} id="user-dropdown">
+              <MenuItem onClick={() => alert('TODO: Delete acccount')}>Delete Account</MenuItem>
               <MenuItem onClick={() => onLogoutClick()}>Logout</MenuItem>
             </NavDropdown>
           </Nav>

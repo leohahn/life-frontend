@@ -1,4 +1,5 @@
 const API_URL = 'http://localhost:4000/api'
+const SOCKET_URL = 'http://localhost:4000/socket'
 
 export function login (userData) {
   const options = {

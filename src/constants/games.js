@@ -1,0 +1,3 @@
+export const GAMES_LOAD = 'life/GAMES_LOAD'
+export const GAMES_LOAD_SUCCEEDED = 'life/GAMES_LOAD_SUCCEEDED'
+export const GAMES_LOAD_FAILED = 'life/GAMES_LOAD_FAILED'
